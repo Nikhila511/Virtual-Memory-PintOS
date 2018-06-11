@@ -1,0 +1,1783 @@
+cd build && make grade
+make[1]: Entering directory '/home/os-class/pintos/programming-assignment-3-gameofthreads_s03/src/vm/build'
+../../tests/make-grade ../.. results ../../tests/vm/Grading | tee grade
+TOTAL TESTING SCORE: 56.5%
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+SUMMARY BY TEST SET
+
+Test Set                                      Pts Max  % Ttl  % Max
+--------------------------------------------- --- --- ------ ------
+tests/vm/Rubric.functionality                  16/ 55  14.5%/ 50.0%
+tests/vm/Rubric.robustness                     13/ 28   7.0%/ 15.0%
+tests/userprog/Rubric.functionality           108/108  10.0%/ 10.0%
+tests/userprog/Rubric.robustness               88/ 88   5.0%/  5.0%
+tests/filesys/base/Rubric                      30/ 30  20.0%/ 20.0%
+--------------------------------------------- --- --- ------ ------
+Total                                                  56.5%/100.0%
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+SUMMARY OF INDIVIDUAL TESTS
+
+Functionality of virtual memory subsystem (tests/vm/Rubric.functionality):
+	- Test stack growth.
+	  ** 0/ 3 tests/vm/pt-grow-stack
+	  ** 0/ 3 tests/vm/pt-grow-stk-sc
+	  ** 0/ 3 tests/vm/pt-big-stk-obj
+	  ** 0/ 3 tests/vm/pt-grow-pusha
+
+	- Test paging behavior.
+	     3/ 3 tests/vm/page-linear
+	  ** 0/ 3 tests/vm/page-parallel
+	     3/ 3 tests/vm/page-shuffle
+	     4/ 4 tests/vm/page-merge-seq
+	     4/ 4 tests/vm/page-merge-par
+	  ** 0/ 4 tests/vm/page-merge-mm
+	  ** 0/ 4 tests/vm/page-merge-stk
+
+	- Test "mmap" system call.
+	  ** 0/ 2 tests/vm/mmap-read
+	  ** 0/ 2 tests/vm/mmap-write
+	  ** 0/ 2 tests/vm/mmap-shuffle
+
+	  ** 0/ 2 tests/vm/mmap-twice
+
+	     2/ 2 tests/vm/mmap-unmap
+	  ** 0/ 1 tests/vm/mmap-exit
+
+	  ** 0/ 3 tests/vm/mmap-clean
+
+	  ** 0/ 2 tests/vm/mmap-close
+	  ** 0/ 2 tests/vm/mmap-remove
+
+	- Section summary.
+	      5/ 20 tests passed
+	     16/ 55 points subtotal
+
+Robustness of virtual memory subsystem (tests/vm/Rubric.robustness):
+	- Test robustness of page table support.
+	     2/ 2 tests/vm/pt-bad-addr
+	     3/ 3 tests/vm/pt-bad-read
+	     2/ 2 tests/vm/pt-write-code
+	  ** 0/ 3 tests/vm/pt-write-code2
+	     4/ 4 tests/vm/pt-grow-bad
+
+	- Test robustness of "mmap" system call.
+	     1/ 1 tests/vm/mmap-bad-fd
+	  ** 0/ 1 tests/vm/mmap-inherit
+	  ** 0/ 1 tests/vm/mmap-null
+	     1/ 1 tests/vm/mmap-zero
+
+	  ** 0/ 2 tests/vm/mmap-misalign
+
+	  ** 0/ 2 tests/vm/mmap-over-code
+	  ** 0/ 2 tests/vm/mmap-over-data
+	  ** 0/ 2 tests/vm/mmap-over-stk
+	  ** 0/ 2 tests/vm/mmap-overlap
+
+
+	- Section summary.
+	      6/ 14 tests passed
+	     13/ 28 points subtotal
+
+Functionality of system calls (tests/userprog/Rubric.functionality):
+	- Test argument passing on Pintos command line.
+	     3/ 3 tests/userprog/args-none
+	     3/ 3 tests/userprog/args-single
+	     3/ 3 tests/userprog/args-multiple
+	     3/ 3 tests/userprog/args-many
+	     3/ 3 tests/userprog/args-dbl-space
+
+	- Test "create" system call.
+	     3/ 3 tests/userprog/create-empty
+	     3/ 3 tests/userprog/create-long
+	     3/ 3 tests/userprog/create-normal
+	     3/ 3 tests/userprog/create-exists
+
+	- Test "open" system call.
+	     3/ 3 tests/userprog/open-missing
+	     3/ 3 tests/userprog/open-normal
+	     3/ 3 tests/userprog/open-twice
+
+	- Test "read" system call.
+	     3/ 3 tests/userprog/read-normal
+	     3/ 3 tests/userprog/read-zero
+
+	- Test "write" system call.
+	     3/ 3 tests/userprog/write-normal
+	     3/ 3 tests/userprog/write-zero
+
+	- Test "close" system call.
+	     3/ 3 tests/userprog/close-normal
+
+	- Test "exec" system call.
+	     5/ 5 tests/userprog/exec-once
+	     5/ 5 tests/userprog/exec-multiple
+	     5/ 5 tests/userprog/exec-arg
+
+	- Test "wait" system call.
+	     5/ 5 tests/userprog/wait-simple
+	     5/ 5 tests/userprog/wait-twice
+
+	- Test "exit" system call.
+	     5/ 5 tests/userprog/exit
+
+	- Test "halt" system call.
+	     3/ 3 tests/userprog/halt
+
+	- Test recursive execution of user programs.
+	    15/15 tests/userprog/multi-recurse
+
+	- Test read-only executable feature.
+	     3/ 3 tests/userprog/rox-simple
+	     3/ 3 tests/userprog/rox-child
+	     3/ 3 tests/userprog/rox-multichild
+
+	- Section summary.
+	     28/ 28 tests passed
+	    108/108 points subtotal
+
+Robustness of system calls (tests/userprog/Rubric.robustness):
+	- Test robustness of file descriptor handling.
+	     2/ 2 tests/userprog/close-stdin
+	     2/ 2 tests/userprog/close-stdout
+	     2/ 2 tests/userprog/close-bad-fd
+	     2/ 2 tests/userprog/close-twice
+	     2/ 2 tests/userprog/read-bad-fd
+	     2/ 2 tests/userprog/read-stdout
+	     2/ 2 tests/userprog/write-bad-fd
+	     2/ 2 tests/userprog/write-stdin
+	     2/ 2 tests/userprog/multi-child-fd
+
+	- Test robustness of pointer handling.
+	     3/ 3 tests/userprog/create-bad-ptr
+	     3/ 3 tests/userprog/exec-bad-ptr
+	     3/ 3 tests/userprog/open-bad-ptr
+	     3/ 3 tests/userprog/read-bad-ptr
+	     3/ 3 tests/userprog/write-bad-ptr
+
+	- Test robustness of buffer copying across page boundaries.
+	     3/ 3 tests/userprog/create-bound
+	     3/ 3 tests/userprog/open-boundary
+	     3/ 3 tests/userprog/read-boundary
+	     3/ 3 tests/userprog/write-boundary
+
+	- Test handling of null pointer and empty strings.
+	     2/ 2 tests/userprog/create-null
+	     2/ 2 tests/userprog/open-null
+	     2/ 2 tests/userprog/open-empty
+
+	- Test robustness of system call implementation.
+	     3/ 3 tests/userprog/sc-bad-arg
+	     3/ 3 tests/userprog/sc-bad-sp
+	     5/ 5 tests/userprog/sc-boundary
+	     5/ 5 tests/userprog/sc-boundary-2
+
+	- Test robustness of "exec" and "wait" system calls.
+	     5/ 5 tests/userprog/exec-missing
+	     5/ 5 tests/userprog/wait-bad-pid
+	     5/ 5 tests/userprog/wait-killed
+
+	- Test robustness of exception handling.
+	     1/ 1 tests/userprog/bad-read
+	     1/ 1 tests/userprog/bad-write
+	     1/ 1 tests/userprog/bad-jump
+	     1/ 1 tests/userprog/bad-read2
+	     1/ 1 tests/userprog/bad-write2
+	     1/ 1 tests/userprog/bad-jump2
+
+	- Section summary.
+	     34/ 34 tests passed
+	     88/ 88 points subtotal
+
+Functionality of base file system (tests/filesys/base/Rubric):
+	- Test basic support for small files.
+	     1/ 1 tests/filesys/base/sm-create
+	     2/ 2 tests/filesys/base/sm-full
+	     2/ 2 tests/filesys/base/sm-random
+	     2/ 2 tests/filesys/base/sm-seq-block
+	     3/ 3 tests/filesys/base/sm-seq-random
+
+	- Test basic support for large files.
+	     1/ 1 tests/filesys/base/lg-create
+	     2/ 2 tests/filesys/base/lg-full
+	     2/ 2 tests/filesys/base/lg-random
+	     2/ 2 tests/filesys/base/lg-seq-block
+	     3/ 3 tests/filesys/base/lg-seq-random
+
+	- Test synchronized multiprogram access to files.
+	     4/ 4 tests/filesys/base/syn-read
+	     4/ 4 tests/filesys/base/syn-write
+	     2/ 2 tests/filesys/base/syn-remove
+
+	- Section summary.
+	     13/ 13 tests passed
+	     30/ 30 points subtotal
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/pt-grow-stack FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (pt-grow-stack) begin
+  (pt-grow-stack) cksum: 3424492700
+  (pt-grow-stack) end
+Differences in `diff -u' format:
+  (pt-grow-stack) begin
+- (pt-grow-stack) cksum: 3424492700
+- (pt-grow-stack) end
++ Page fault at 0xbfffee78: not present error writing page in user context.
++ pt-grow-stack: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480a0
++  cr2=bfffee78 error=00000006
++  eax=0804ca00 ebx=00000000 ecx=00000003 edx=0804caad
++  esi=00000000 edi=00000000 esp=bfffee7c ebp=bfffff98
++  cs=001b ds=0023 es=0023 ss=0023
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/pt-grow-stack:
+
+Copying tests/vm/pt-grow-stack to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run pt-grow-stack
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 79 sectors (39 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'pt-grow-stack' into the file system...
+Erasing ustar archive...
+Executing 'pt-grow-stack':
+(pt-grow-stack) begin
+Page fault at 0xbfffee78: not present error writing page in user context.
+pt-grow-stack: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480a0
+ cr2=bfffee78 error=00000006
+ eax=0804ca00 ebx=00000000 ecx=00000003 edx=0804caad
+ esi=00000000 edi=00000000 esp=bfffee7c ebp=bfffff98
+ cs=001b ds=0023 es=0023 ss=0023
+pt-grow-stack: exit(-1)
+Execution of 'pt-grow-stack' complete.
+Timer: 483 ticks
+Thread: 30 idle ticks, 337 kernel ticks, 123 user ticks
+hda2 (filesys): 63 reads, 162 writes
+hda3 (scratch): 78 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1364 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/pt-grow-stk-sc FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (pt-grow-stk-sc) begin
+  (pt-grow-stk-sc) create "sample.txt"
+  (pt-grow-stk-sc) open "sample.txt"
+  (pt-grow-stk-sc) write "sample.txt"
+  (pt-grow-stk-sc) 2nd open "sample.txt"
+  (pt-grow-stk-sc) read "sample.txt"
+  (pt-grow-stk-sc) compare written data against read data
+  (pt-grow-stk-sc) end
+Differences in `diff -u' format:
+  (pt-grow-stk-sc) begin
+- (pt-grow-stk-sc) create "sample.txt"
+- (pt-grow-stk-sc) open "sample.txt"
+- (pt-grow-stk-sc) write "sample.txt"
+- (pt-grow-stk-sc) 2nd open "sample.txt"
+- (pt-grow-stk-sc) read "sample.txt"
+- (pt-grow-stk-sc) compare written data against read data
+- (pt-grow-stk-sc) end
++ Page fault at 0xbffeff70: not present error writing page in user context.
++ pt-grow-stk-sc: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480a0
++  cr2=bffeff70 error=00000006
++  eax=0804c900 ebx=00000000 ecx=00000003 edx=0804c9ad
++  esi=00000000 edi=00000000 esp=bffeff74 ebp=bfffff98
++  cs=001b ds=0023 es=0023 ss=0023
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/pt-grow-stk-sc:
+
+Copying tests/vm/pt-grow-stk-sc to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run pt-grow-stk-sc
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 74 sectors (37 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'pt-grow-stk-sc' into the file system...
+Erasing ustar archive...
+Executing 'pt-grow-stk-sc':
+(pt-grow-stk-sc) begin
+Page fault at 0xbffeff70: not present error writing page in user context.
+pt-grow-stk-sc: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480a0
+ cr2=bffeff70 error=00000006
+ eax=0804c900 ebx=00000000 ecx=00000003 edx=0804c9ad
+ esi=00000000 edi=00000000 esp=bffeff74 ebp=bfffff98
+ cs=001b ds=0023 es=0023 ss=0023
+pt-grow-stk-sc: exit(-1)
+Execution of 'pt-grow-stk-sc' complete.
+Timer: 477 ticks
+Thread: 30 idle ticks, 330 kernel ticks, 124 user ticks
+hda2 (filesys): 61 reads, 152 writes
+hda3 (scratch): 73 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1371 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/pt-big-stk-obj FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (pt-big-stk-obj) begin
+  (pt-big-stk-obj) cksum: 3256410166
+  (pt-big-stk-obj) end
+Differences in `diff -u' format:
+  (pt-big-stk-obj) begin
+- (pt-big-stk-obj) cksum: 3256410166
+- (pt-big-stk-obj) end
++ Page fault at 0xbffefe78: not present error writing page in user context.
++ pt-big-stk-obj: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480a0
++  cr2=bffefe78 error=00000006
++  eax=0804ca00 ebx=00000000 ecx=00000003 edx=0804caad
++  esi=00000000 edi=00000000 esp=bffefe7c ebp=bfffff98
++  cs=001b ds=0023 es=0023 ss=0023
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/pt-big-stk-obj:
+
+Copying tests/vm/pt-big-stk-obj to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run pt-big-stk-obj
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 79 sectors (39 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'pt-big-stk-obj' into the file system...
+Erasing ustar archive...
+Executing 'pt-big-stk-obj':
+(pt-big-stk-obj) begin
+Page fault at 0xbffefe78: not present error writing page in user context.
+pt-big-stk-obj: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480a0
+ cr2=bffefe78 error=00000006
+ eax=0804ca00 ebx=00000000 ecx=00000003 edx=0804caad
+ esi=00000000 edi=00000000 esp=bffefe7c ebp=bfffff98
+ cs=001b ds=0023 es=0023 ss=0023
+pt-big-stk-obj: exit(-1)
+Execution of 'pt-big-stk-obj' complete.
+Timer: 483 ticks
+Thread: 30 idle ticks, 337 kernel ticks, 123 user ticks
+hda2 (filesys): 63 reads, 162 writes
+hda3 (scratch): 78 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1371 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/pt-grow-pusha FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (pt-grow-pusha) begin
+  (pt-grow-pusha) end
+Differences in `diff -u' format:
+  (pt-grow-pusha) begin
+- (pt-grow-pusha) end
++ Page fault at 0xbfffeffc: not present error writing page in user context.
++ pt-grow-pusha: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804809f
++  cr2=bfffeffc error=00000006
++  eax=bfffff98 ebx=00000000 ecx=00000003 edx=0804c3ad
++  esi=00000000 edi=00000000 esp=bffff000 ebp=bfffff98
++  cs=001b ds=0023 es=0023 ss=0023
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/pt-grow-pusha:
+
+Copying tests/vm/pt-grow-pusha to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run pt-grow-pusha
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 71 sectors (35 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'pt-grow-pusha' into the file system...
+Erasing ustar archive...
+Executing 'pt-grow-pusha':
+(pt-grow-pusha) begin
+Page fault at 0xbfffeffc: not present error writing page in user context.
+pt-grow-pusha: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804809f
+ cr2=bfffeffc error=00000006
+ eax=bfffff98 ebx=00000000 ecx=00000003 edx=0804c3ad
+ esi=00000000 edi=00000000 esp=bffff000 ebp=bfffff98
+ cs=001b ds=0023 es=0023 ss=0023
+pt-grow-pusha: exit(-1)
+Execution of 'pt-grow-pusha' complete.
+Timer: 476 ticks
+Thread: 30 idle ticks, 330 kernel ticks, 123 user ticks
+hda2 (filesys): 65 reads, 146 writes
+hda3 (scratch): 70 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1364 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/page-parallel FAILURE:
+
+Run didn't shut down properly: no "Timer: # ticks" message
+
+OUTPUT FROM tests/vm/page-parallel:
+
+Copying tests/vm/page-parallel to scratch partition...
+Copying tests/vm/child-linear to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run page-parallel
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 145 sectors (72 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'page-parallel' into the file system...
+Putting 'child-linear' into the file system...
+Erasing ustar archive...
+Executing 'page-parallel':
+(page-parallel) begin
+(page-parallel) exec "child-linear"
+(page-parallel) exec "child-linear"
+(page-parallel) exec "child-linear"
+(page-parallel) exec "child-linear"
+(page-parallel) wait for child 0
+child-linear: exit(66)
+(page-parallel) wait for child 1
+child-linear: exit(66)
+(page-parallel) wait for child 2
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/page-merge-mm FAILURE:
+
+run: wait for child 0: FAILED
+
+OUTPUT FROM tests/vm/page-merge-mm:
+
+Copying tests/vm/page-merge-mm to scratch partition...
+Copying tests/vm/child-qsort-mm to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run page-merge-mm
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 154 sectors (77 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'page-merge-mm' into the file system...
+Putting 'child-qsort-mm' into the file system...
+Erasing ustar archive...
+Executing 'page-merge-mm':
+(page-merge-mm) begin
+(page-merge-mm) init
+(page-merge-mm) sort chunk 0
+(page-merge-mm) sort chunk 1
+child-qsort-mm: exit(-1)
+(page-merge-mm) sort chunk 2
+child-qsort-mm: exit(-1)
+(page-merge-mm) sort chunk 3
+child-qsort-mm: exit(-1)
+(page-merge-mm) sort chunk 4
+child-qsort-mm: exit(-1)
+(page-merge-mm) sort chunk 5
+child-qsort-mm: exit(-1)
+(page-merge-mm) sort chunk 6
+child-qsort-mm: exit(-1)
+(page-merge-mm) sort chunk 7
+child-qsort-mm: exit(-1)
+(page-merge-mm) wait for child 0
+(page-merge-mm) wait for child 0: FAILED
+page-merge-mm: exit(1)
+child-qsort-mm: exit(-1)
+Execution of 'page-merge-mm' complete.
+Timer: 15682 ticks
+Thread: 30 idle ticks, 858 kernel ticks, 14806 user ticks
+hda2 (filesys): 1222 reads, 4698 writes
+hda3 (scratch): 153 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1576 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/page-merge-stk FAILURE:
+
+run: wait for child 0: FAILED
+
+OUTPUT FROM tests/vm/page-merge-stk:
+
+Copying tests/vm/page-merge-stk to scratch partition...
+Copying tests/vm/child-qsort to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run page-merge-stk
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 154 sectors (77 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'page-merge-stk' into the file system...
+Putting 'child-qsort' into the file system...
+Erasing ustar archive...
+Executing 'page-merge-stk':
+(page-merge-stk) begin
+(page-merge-stk) init
+(page-merge-stk) sort chunk 0
+Page fault at 0xbffdff84: not present error writing page in user context.
+child-qsort: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480bd
+ cr2=bffdff84 error=00000006
+ eax=bffffffb ebx=bfffffb8 ecx=bfffffb8 edx=00000000
+ esi=00000000 edi=00000000 esp=bffdff88 ebp=bfffffa8
+ cs=001b ds=0023 es=0023 ss=0023
+(page-merge-stk) sort chunk 1
+child-qsort: exit(-1)
+Page fault at 0xbffdff84: not present error writing page in user context.
+child-qsort: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480bd
+ cr2=bffdff84 error=00000006
+ eax=bffffffb ebx=bfffffb8 ecx=bfffffb8 edx=00000000
+ esi=00000000 edi=00000000 esp=bffdff88 ebp=bfffffa8
+ cs=001b ds=0023 es=0023 ss=0023
+(page-merge-stk) sort chunk 2
+child-qsort: exit(-1)
+Page fault at 0xbffdff84: not present error writing page in user context.
+child-qsort: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480bd
+ cr2=bffdff84 error=00000006
+ eax=bffffffb ebx=bfffffb8 ecx=bfffffb8 edx=00000000
+ esi=00000000 edi=00000000 esp=bffdff88 ebp=bfffffa8
+ cs=001b ds=0023 es=0023 ss=0023
+(page-merge-stk) sort chunk 3
+child-qsort: exit(-1)
+Page fault at 0xbffdff84: not present error writing page in user context.
+child-qsort: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480bd
+ cr2=bffdff84 error=00000006
+ eax=bffffffb ebx=bfffffb8 ecx=bfffffb8 edx=00000000
+ esi=00000000 edi=00000000 esp=bffdff88 ebp=bfffffa8
+ cs=001b ds=0023 es=0023 ss=0023
+(page-merge-stk) sort chunk 4
+child-qsort: exit(-1)
+Page fault at 0xbffdff84: not present error writing page in user context.
+child-qsort: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480bd
+ cr2=bffdff84 error=00000006
+ eax=bffffffb ebx=bfffffb8 ecx=bfffffb8 edx=00000000
+ esi=00000000 edi=00000000 esp=bffdff88 ebp=bfffffa8
+ cs=001b ds=0023 es=0023 ss=0023
+(page-merge-stk) sort chunk 5
+child-qsort: exit(-1)
+Page fault at 0xbffdff84: not present error writing page in user context.
+child-qsort: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480bd
+ cr2=bffdff84 error=00000006
+ eax=bffffffb ebx=bfffffb8 ecx=bfffffb8 edx=00000000
+ esi=00000000 edi=00000000 esp=bffdff88 ebp=bfffffa8
+ cs=001b ds=0023 es=0023 ss=0023
+(page-merge-stk) sort chunk 6
+child-qsort: exit(-1)
+Page fault at 0xbffdff84: not present error writing page in user context.
+child-qsort: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480bd
+ cr2=bffdff84 error=00000006
+ eax=bffffffb ebx=bfffffb8 ecx=bfffffb8 edx=00000000
+ esi=00000000 edi=00000000 esp=bffdff88 ebp=bfffffa8
+ cs=001b ds=0023 es=0023 ss=0023
+(page-merge-stk) sort chunk 7
+child-qsort: exit(-1)
+Page fault at 0xbffdff84: not present error writing page in user context.
+child-qsort: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480bd
+ cr2=bffdff84 error=00000006
+ eax=bffffffb ebx=bfffffb8 ecx=bfffffb8 edx=00000000
+ esi=00000000 edi=00000000 esp=bffdff88 ebp=bfffffa8
+ cs=001b ds=0023 es=0023 ss=0023
+(page-merge-stk) wait for child 0
+(page-merge-stk) wait for child 0: FAILED
+child-qsort: exit(-1)
+page-merge-stk: exit(1)
+Execution of 'page-merge-stk' complete.
+Timer: 16062 ticks
+Thread: 30 idle ticks, 828 kernel ticks, 15216 user ticks
+hda2 (filesys): 1154 reads, 4698 writes
+hda3 (scratch): 153 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 4526 characters output
+Keyboard: 0 keys pressed
+Exception: 8 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-read FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-read) begin
+  (mmap-read) open "sample.txt"
+  (mmap-read) mmap "sample.txt"
+  (mmap-read) end
+Differences in `diff -u' format:
+  (mmap-read) begin
+  (mmap-read) open "sample.txt"
+  (mmap-read) mmap "sample.txt"
+- (mmap-read) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-read:
+
+Copying tests/vm/mmap-read to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-read
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 77 sectors (38 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-read' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-read':
+(mmap-read) begin
+(mmap-read) open "sample.txt"
+(mmap-read) mmap "sample.txt"
+mmap-read: exit(-1)
+Execution of 'mmap-read' complete.
+Timer: 479 ticks
+Thread: 30 idle ticks, 379 kernel ticks, 78 user ticks
+hda2 (filesys): 90 reads, 160 writes
+hda3 (scratch): 76 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1072 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-write FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-write) begin
+  (mmap-write) create "sample.txt"
+  (mmap-write) open "sample.txt"
+  (mmap-write) mmap "sample.txt"
+  (mmap-write) compare read data against written data
+  (mmap-write) end
+Differences in `diff -u' format:
+  (mmap-write) begin
+  (mmap-write) create "sample.txt"
+  (mmap-write) open "sample.txt"
+  (mmap-write) mmap "sample.txt"
+- (mmap-write) compare read data against written data
+- (mmap-write) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-write:
+
+Copying tests/vm/mmap-write to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-write
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 74 sectors (37 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-write' into the file system...
+Erasing ustar archive...
+Executing 'mmap-write':
+(mmap-write) begin
+(mmap-write) create "sample.txt"
+(mmap-write) open "sample.txt"
+(mmap-write) mmap "sample.txt"
+mmap-write: exit(-1)
+Execution of 'mmap-write' complete.
+Timer: 470 ticks
+Thread: 30 idle ticks, 330 kernel ticks, 118 user ticks
+hda2 (filesys): 85 reads, 158 writes
+hda3 (scratch): 73 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1069 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-shuffle FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-shuffle) begin
+  (mmap-shuffle) create "buffer"
+  (mmap-shuffle) open "buffer"
+  (mmap-shuffle) mmap "buffer"
+  (mmap-shuffle) init: cksum=3115322833
+  (mmap-shuffle) shuffle 0: cksum=1691062564
+  (mmap-shuffle) shuffle 1: cksum=1973575879
+  (mmap-shuffle) shuffle 2: cksum=1647619479
+  (mmap-shuffle) shuffle 3: cksum=96566261
+  (mmap-shuffle) shuffle 4: cksum=3885786467
+  (mmap-shuffle) shuffle 5: cksum=3022003332
+  (mmap-shuffle) shuffle 6: cksum=3614934266
+  (mmap-shuffle) shuffle 7: cksum=2704001777
+  (mmap-shuffle) shuffle 8: cksum=735775156
+  (mmap-shuffle) shuffle 9: cksum=1864109763
+  (mmap-shuffle) end
+Differences in `diff -u' format:
+  (mmap-shuffle) begin
+  (mmap-shuffle) create "buffer"
+  (mmap-shuffle) open "buffer"
+  (mmap-shuffle) mmap "buffer"
+- (mmap-shuffle) init: cksum=3115322833
+- (mmap-shuffle) shuffle 0: cksum=1691062564
+- (mmap-shuffle) shuffle 1: cksum=1973575879
+- (mmap-shuffle) shuffle 2: cksum=1647619479
+- (mmap-shuffle) shuffle 3: cksum=96566261
+- (mmap-shuffle) shuffle 4: cksum=3885786467
+- (mmap-shuffle) shuffle 5: cksum=3022003332
+- (mmap-shuffle) shuffle 6: cksum=3614934266
+- (mmap-shuffle) shuffle 7: cksum=2704001777
+- (mmap-shuffle) shuffle 8: cksum=735775156
+- (mmap-shuffle) shuffle 9: cksum=1864109763
+- (mmap-shuffle) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-shuffle:
+
+Copying tests/vm/mmap-shuffle to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-shuffle
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 79 sectors (39 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-shuffle' into the file system...
+Erasing ustar archive...
+Executing 'mmap-shuffle':
+(mmap-shuffle) begin
+(mmap-shuffle) create "buffer"
+(mmap-shuffle) open "buffer"
+(mmap-shuffle) mmap "buffer"
+mmap-shuffle: exit(-1)
+Execution of 'mmap-shuffle' complete.
+Timer: 550 ticks
+Thread: 30 idle ticks, 334 kernel ticks, 194 user ticks
+hda2 (filesys): 87 reads, 422 writes
+hda3 (scratch): 78 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1075 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-twice FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-twice) begin
+  (mmap-twice) open "sample.txt" #0
+  (mmap-twice) mmap "sample.txt" #0 at 0x10000000
+  (mmap-twice) open "sample.txt" #1
+  (mmap-twice) mmap "sample.txt" #1 at 0x20000000
+  (mmap-twice) compare mmap'd file 0 against data
+  (mmap-twice) compare mmap'd file 1 against data
+  (mmap-twice) end
+Differences in `diff -u' format:
+  (mmap-twice) begin
+  (mmap-twice) open "sample.txt" #0
+  (mmap-twice) mmap "sample.txt" #0 at 0x10000000
+- (mmap-twice) open "sample.txt" #1
+- (mmap-twice) mmap "sample.txt" #1 at 0x20000000
+- (mmap-twice) compare mmap'd file 0 against data
+- (mmap-twice) compare mmap'd file 1 against data
+- (mmap-twice) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-twice:
+
+Copying tests/vm/mmap-twice to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-twice
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 77 sectors (38 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-twice' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-twice':
+(mmap-twice) begin
+(mmap-twice) open "sample.txt" #0
+(mmap-twice) mmap "sample.txt" #0 at 0x10000000
+mmap-twice: exit(-1)
+Execution of 'mmap-twice' complete.
+Timer: 479 ticks
+Thread: 30 idle ticks, 375 kernel ticks, 82 user ticks
+hda2 (filesys): 90 reads, 160 writes
+hda3 (scratch): 76 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1100 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-exit FAILURE:
+
+run: wait for child (should return 0): FAILED
+
+OUTPUT FROM tests/vm/mmap-exit:
+
+Copying tests/vm/mmap-exit to scratch partition...
+Copying tests/vm/child-mm-wrt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-exit
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 146 sectors (73 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-exit' into the file system...
+Putting 'child-mm-wrt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-exit':
+(mmap-exit) begin
+(child-mm-wrt) begin
+(child-mm-wrt) create "sample.txt"
+(child-mm-wrt) open "sample.txt"
+(child-mm-wrt) mmap "sample.txt"
+child-mm-wrt: exit(-1)
+(mmap-exit) wait for child (should return 0): FAILED
+mmap-exit: exit(1)
+Execution of 'mmap-exit' complete.
+Timer: 695 ticks
+Thread: 30 idle ticks, 479 kernel ticks, 198 user ticks
+hda2 (filesys): 146 reads, 304 writes
+hda3 (scratch): 145 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1215 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-clean FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-clean) begin
+  (mmap-clean) open "sample.txt"
+  (mmap-clean) mmap "sample.txt"
+  (mmap-clean) write "sample.txt"
+  (mmap-clean) munmap "sample.txt"
+  (mmap-clean) seek "sample.txt"
+  (mmap-clean) read "sample.txt"
+  (mmap-clean) file change was retained after munmap
+  (mmap-clean) end
+Differences in `diff -u' format:
+  (mmap-clean) begin
+  (mmap-clean) open "sample.txt"
+  (mmap-clean) mmap "sample.txt"
+- (mmap-clean) write "sample.txt"
+- (mmap-clean) munmap "sample.txt"
+- (mmap-clean) seek "sample.txt"
+- (mmap-clean) read "sample.txt"
+- (mmap-clean) file change was retained after munmap
+- (mmap-clean) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-clean:
+
+Copying tests/vm/mmap-clean to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-clean
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 78 sectors (39 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-clean' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-clean':
+(mmap-clean) begin
+(mmap-clean) open "sample.txt"
+(mmap-clean) mmap "sample.txt"
+mmap-clean: exit(-1)
+Execution of 'mmap-clean' complete.
+Timer: 476 ticks
+Thread: 30 idle ticks, 378 kernel ticks, 76 user ticks
+hda2 (filesys): 92 reads, 162 writes
+hda3 (scratch): 77 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1080 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-close FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-close) begin
+  (mmap-close) open "sample.txt"
+  (mmap-close) mmap "sample.txt"
+  (mmap-close) end
+Differences in `diff -u' format:
+  (mmap-close) begin
+  (mmap-close) open "sample.txt"
+  (mmap-close) mmap "sample.txt"
+- (mmap-close) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-close:
+
+Copying tests/vm/mmap-close to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-close
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 77 sectors (38 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-close' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-close':
+(mmap-close) begin
+(mmap-close) open "sample.txt"
+(mmap-close) mmap "sample.txt"
+mmap-close: exit(-1)
+Execution of 'mmap-close' complete.
+Timer: 479 ticks
+Thread: 30 idle ticks, 378 kernel ticks, 79 user ticks
+hda2 (filesys): 89 reads, 160 writes
+hda3 (scratch): 76 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1080 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-remove FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-remove) begin
+  (mmap-remove) open "sample.txt"
+  (mmap-remove) mmap "sample.txt"
+  (mmap-remove) remove "sample.txt"
+  (mmap-remove) try to open "sample.txt"
+  (mmap-remove) create "another"
+  (mmap-remove) end
+Differences in `diff -u' format:
+  (mmap-remove) begin
+  (mmap-remove) open "sample.txt"
+  (mmap-remove) mmap "sample.txt"
+- (mmap-remove) remove "sample.txt"
+- (mmap-remove) try to open "sample.txt"
+- (mmap-remove) create "another"
+- (mmap-remove) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-remove:
+
+Copying tests/vm/mmap-remove to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-remove
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 78 sectors (39 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-remove' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-remove':
+(mmap-remove) begin
+(mmap-remove) open "sample.txt"
+(mmap-remove) mmap "sample.txt"
+mmap-remove: exit(-1)
+Execution of 'mmap-remove' complete.
+Timer: 476 ticks
+Thread: 30 idle ticks, 375 kernel ticks, 79 user ticks
+hda2 (filesys): 91 reads, 162 writes
+hda3 (scratch): 77 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1088 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/pt-write-code2 FAILURE:
+
+Kernel panic in run: PANIC at ../../threads/synch.c:217 in lock_acquire(): assertion `!lock_held_by_current_thread (lock)' failed.
+Call stack: 0xc002a27b 0xc00235bc 0xc002e7a0 0xc002143a 0xc002e01b 0xc002deb9 0xc0022439 0xc0022659 0x804a551 0x80481b2 0x80481e4 0x80480a7 0xc010a01c 0xc002fc4e 0xc002f11f 0xc002e4b4 0xc002df4f 0xc0022439 0xc0022659 0x804a530
+Translation of call stack:
+In kernel.o:
+0xc002a27b: debug_panic (.../../lib/kernel/debug.c:38)
+0xc00235bc: lock_acquire (...../../threads/synch.c:219)
+0xc002e7a0: syscall_exit (...l.c:481 (discriminator 3))
+0xc002143a: thread_exit (..../../threads/thread.c:361)
+0xc002e01b: copy_in (...../userprog/syscall.c:138)
+0xc002deb9: syscall_handler (.../../userprog/syscall.c:81)
+0xc0022439: intr_handler (..../threads/interrupt.c:367)
+0xc0022659: intr_entry (threads/intr-stubs.S:38)
+In tests/vm/pt-write-code2:
+0x0804a551: write (...../lib/user/syscall.c:123)
+0x080481b2: vmsg (...uild/../../tests/lib.c:24)
+0x080481e4: msg (...uild/../../tests/lib.c:35)
+0x080480a7: test_main (...s/vm/pt-write-code-2.c:12)
+0xc010a01c: (unknown)
+In kernel.o:
+0xc002fc4e: inode_read_at (...../../filesys/inode.c:239)
+0xc002f11f: file_read (...d/../../filesys/file.c:71)
+0xc002e4b4: sys_read (...../userprog/syscall.c:350)
+0xc002df4f: syscall_handler (.../../userprog/syscall.c:93)
+0xc0022439: intr_handler (..../threads/interrupt.c:367)
+0xc0022659: intr_entry (threads/intr-stubs.S:38)
+In tests/vm/pt-write-code2:
+0x0804a530: read (...../lib/user/syscall.c:117)
+Translations of user virtual addresses above are based on a guess at
+the binary to use.  If this guess is incorrect, then those
+translations will be misleading.
+
+OUTPUT FROM tests/vm/pt-write-code2:
+
+Copying tests/vm/pt-write-code2 to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run pt-write-code2
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 74 sectors (37 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'pt-write-code2' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'pt-write-code2':
+(pt-write-code2) begin
+(pt-write-code2) open "sample.txt"
+pt-write-code2: exit(-1)
+Execution of 'pt-write-code2' complete.
+Timer: 474 ticks
+Thread: 30 idle ticks, 375 kernel ticks, 76 user ticks
+hda2 (filesys): 89 reads, 154 writes
+hda3 (scratch): 73 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Kernel PANIC at ../../threads/synch.c:217 in lock_acquire(): assertion `!lock_held_by_current_thread (lock)' failed.
+Call stack: 0xc002a27b 0xc00235bc 0xc002e7a0 0xc002143a 0xc002e01b 0xc002deb9 0xc0022439 0xc0022659 0x804a551 0x80481b2 0x80481e4 0x80480a7 0xc010a01c 0xc002fc4e 0xc002f11f 0xc002e4b4 0xc002df4f 0xc0022439 0xc0022659 0x804a530Console: 1420 characters output
+Keyboard: 0 keys pressed
+Exception: 751 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-inherit FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-inherit) begin
+  (mmap-inherit) open "sample.txt"
+  (mmap-inherit) mmap "sample.txt"
+  (mmap-inherit) exec "child-inherit"
+  (child-inherit) begin
+  child-inherit: exit(-1)
+  (mmap-inherit) checking that mmap'd file still has same data
+  (mmap-inherit) end
+  mmap-inherit: exit(0)
+Differences in `diff -u' format:
+  (mmap-inherit) begin
+  (mmap-inherit) open "sample.txt"
+  (mmap-inherit) mmap "sample.txt"
+- (mmap-inherit) exec "child-inherit"
+- (child-inherit) begin
+- child-inherit: exit(-1)
+- (mmap-inherit) checking that mmap'd file still has same data
+- (mmap-inherit) end
+- mmap-inherit: exit(0)
++ mmap-inherit: exit(-1)
+
+(User fault messages are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-inherit:
+
+Copying tests/vm/mmap-inherit to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+Copying tests/vm/child-inherit to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-inherit
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 148 sectors (74 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-inherit' into the file system...
+Putting 'sample.txt' into the file system...
+Putting 'child-inherit' into the file system...
+Erasing ustar archive...
+Executing 'mmap-inherit':
+(mmap-inherit) begin
+(mmap-inherit) open "sample.txt"
+(mmap-inherit) mmap "sample.txt"
+mmap-inherit: exit(-1)
+Execution of 'mmap-inherit' complete.
+Timer: 585 ticks
+Thread: 30 idle ticks, 484 kernel ticks, 79 user ticks
+hda2 (filesys): 117 reads, 304 writes
+hda3 (scratch): 147 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1147 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-null FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-null) begin
+  (mmap-null) open "sample.txt"
+  (mmap-null) try to mmap at address 0
+  (mmap-null) end
+Differences in `diff -u' format:
+  (mmap-null) begin
+  (mmap-null) open "sample.txt"
+  (mmap-null) try to mmap at address 0
+- (mmap-null) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-null:
+
+Copying tests/vm/mmap-null to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-null
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 75 sectors (37 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-null' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-null':
+(mmap-null) begin
+(mmap-null) open "sample.txt"
+(mmap-null) try to mmap at address 0
+mmap-null: exit(-1)
+Execution of 'mmap-null' complete.
+Timer: 475 ticks
+Thread: 30 idle ticks, 374 kernel ticks, 79 user ticks
+hda2 (filesys): 88 reads, 156 writes
+hda3 (scratch): 74 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1079 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-misalign FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-misalign) begin
+  (mmap-misalign) open "sample.txt"
+  (mmap-misalign) try to mmap at misaligned address
+  (mmap-misalign) end
+Differences in `diff -u' format:
+  (mmap-misalign) begin
+  (mmap-misalign) open "sample.txt"
+  (mmap-misalign) try to mmap at misaligned address
+- (mmap-misalign) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-misalign:
+
+Copying tests/vm/mmap-misalign to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-misalign
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 75 sectors (37 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-misalign' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-misalign':
+(mmap-misalign) begin
+(mmap-misalign) open "sample.txt"
+(mmap-misalign) try to mmap at misaligned address
+mmap-misalign: exit(-1)
+Execution of 'mmap-misalign' complete.
+Timer: 483 ticks
+Thread: 30 idle ticks, 376 kernel ticks, 84 user ticks
+hda2 (filesys): 88 reads, 156 writes
+hda3 (scratch): 74 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1120 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-over-code FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-over-code) begin
+  (mmap-over-code) open "sample.txt"
+  (mmap-over-code) try to mmap over code segment
+  (mmap-over-code) end
+Differences in `diff -u' format:
+  (mmap-over-code) begin
+  (mmap-over-code) open "sample.txt"
+  (mmap-over-code) try to mmap over code segment
+- (mmap-over-code) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-over-code:
+
+Copying tests/vm/mmap-over-code to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-over-code
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 75 sectors (37 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-over-code' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-over-code':
+(mmap-over-code) begin
+(mmap-over-code) open "sample.txt"
+(mmap-over-code) try to mmap over code segment
+mmap-over-code: exit(-1)
+Execution of 'mmap-over-code' complete.
+Timer: 481 ticks
+Thread: 30 idle ticks, 376 kernel ticks, 82 user ticks
+hda2 (filesys): 88 reads, 156 writes
+hda3 (scratch): 74 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1124 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-over-data FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-over-data) begin
+  (mmap-over-data) open "sample.txt"
+  (mmap-over-data) try to mmap over data segment
+  (mmap-over-data) end
+Differences in `diff -u' format:
+  (mmap-over-data) begin
+  (mmap-over-data) open "sample.txt"
+  (mmap-over-data) try to mmap over data segment
+- (mmap-over-data) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-over-data:
+
+Copying tests/vm/mmap-over-data to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-over-data
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 75 sectors (37 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-over-data' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-over-data':
+(mmap-over-data) begin
+(mmap-over-data) open "sample.txt"
+(mmap-over-data) try to mmap over data segment
+mmap-over-data: exit(-1)
+Execution of 'mmap-over-data' complete.
+Timer: 480 ticks
+Thread: 30 idle ticks, 375 kernel ticks, 82 user ticks
+hda2 (filesys): 88 reads, 156 writes
+hda3 (scratch): 74 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1124 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-over-stk FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-over-stk) begin
+  (mmap-over-stk) open "sample.txt"
+  (mmap-over-stk) try to mmap over stack segment
+  (mmap-over-stk) end
+Differences in `diff -u' format:
+  (mmap-over-stk) begin
+  (mmap-over-stk) open "sample.txt"
+  (mmap-over-stk) try to mmap over stack segment
+- (mmap-over-stk) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-over-stk:
+
+Copying tests/vm/mmap-over-stk to scratch partition...
+Copying ../../tests/vm/sample.txt to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-over-stk
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 75 sectors (37 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-over-stk' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'mmap-over-stk':
+(mmap-over-stk) begin
+(mmap-over-stk) open "sample.txt"
+(mmap-over-stk) try to mmap over stack segment
+mmap-over-stk: exit(-1)
+Execution of 'mmap-over-stk' complete.
+Timer: 483 ticks
+Thread: 30 idle ticks, 377 kernel ticks, 83 user ticks
+hda2 (filesys): 88 reads, 156 writes
+hda3 (scratch): 74 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1117 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+DETAILS OF tests/vm/mmap-overlap FAILURE:
+
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mmap-overlap) begin
+  (mmap-overlap) open "zeros" once
+  (mmap-overlap) mmap "zeros"
+  (mmap-overlap) open "zeros" again
+  (mmap-overlap) try to mmap "zeros" again
+  (mmap-overlap) end
+Differences in `diff -u' format:
+  (mmap-overlap) begin
+  (mmap-overlap) open "zeros" once
+  (mmap-overlap) mmap "zeros"
+- (mmap-overlap) open "zeros" again
+- (mmap-overlap) try to mmap "zeros" again
+- (mmap-overlap) end
+
+(Process exit codes are excluded for matching purposes.)
+
+OUTPUT FROM tests/vm/mmap-overlap:
+
+Copying tests/vm/mmap-overlap to scratch partition...
+Copying tests/vm/zeros to scratch partition...
+squish-pty bochs -q
+PiLo hda1
+Loading.............
+Kernel command line: -q -f extract run mmap-overlap
+Pintos booting with 16,384 kB RAM...
+1919 pages available in kernel pool.
+1919 pages available in user pool.
+Calibrating timer...  102,400 loops/s.
+hda: 13,104 sectors (6 MB), model "BXHD00011", serial "Generic 1234"
+hda1: 208 sectors (104 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 87 sectors (43 kB), Pintos scratch (22)
+hda4: 8,192 sectors (4 MB), Pintos swap (23)
+filesys: using hda2
+scratch: using hda3
+swap: using hda4
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'mmap-overlap' into the file system...
+Putting 'zeros' into the file system...
+Erasing ustar archive...
+Executing 'mmap-overlap':
+(mmap-overlap) begin
+(mmap-overlap) open "zeros" once
+(mmap-overlap) mmap "zeros"
+mmap-overlap: exit(-1)
+Execution of 'mmap-overlap' complete.
+Timer: 482 ticks
+Thread: 30 idle ticks, 381 kernel ticks, 79 user ticks
+hda2 (filesys): 88 reads, 180 writes
+hda3 (scratch): 86 reads, 2 writes
+hda4 (swap): 0 reads, 0 writes
+Console: 1086 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...
+make[1]: Leaving directory '/home/os-class/pintos/programming-assignment-3-gameofthreads_s03/src/vm/build'
